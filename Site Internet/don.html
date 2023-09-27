@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire Entreprise</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body class="don">
+    <div class="Questionnaire">
+       
+        <div>Question1</div>
+        <textarea id="text" placeholder="Votre texte"></textarea>
+        <div>Question2</div>
+        <textarea id="text" placeholder="Votre texte"></textarea>
+        <div>Question3</div>
+        <textarea id="text" placeholder="Votre texte"></textarea>
+        <div>Question4</div>
+        <textarea id="text" placeholder="Votre texte"></textarea>
+        <div>Question5</div>
+        <textarea id="text" placeholder="Votre texte"></textarea>
+        <div>Question6</div>
+        <textarea id="text" placeholder="Votre texte"></textarea>
+        
+        
+    </div>
+    <button onclick="generatePDF()">Télécharger le PDF</button>
+    
+    
+    <script>
+        function generatePDF() {
+            // Nom du fichier | File name
+            var nom_fichier = prompt("Nom du fichier PDF :");
+            // Sélectionner la div avec la classe 'Questionnaire'
+            var divToConvert = document.querySelector('.Questionnaire');
+    
+            if (nom_fichier != null && divToConvert != null) {
+                var opt = {
+                    margin: 0.5,
+                    filename: `${nom_fichier}.pdf`,
+                    image: { type: 'jpeg', quality: 1 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+    
+                html2pdf().set(opt).from(divToConvert).save();
+            } else {
+                alert("Veuillez choisir un nom et sélectionner la div avec la classe 'Questionnaire'.");
+            }
+        }
+    </script>
+</body>
+</html>
